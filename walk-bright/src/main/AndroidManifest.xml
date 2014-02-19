@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="edu.usf.cutr.android.walkbright"
+          android:versionCode="2"
+          android:versionName="0.9">
+
+    <application
+            android:icon="@drawable/icon"
+            android:label="@string/app_name"
+            android:debuggable="false"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+        <activity
+                android:name=".WalkBright"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        GetGabby.com
+
+        <activity
+                android:name=".QuickTorch"
+                android:label="@string/app_name"
+                android:finishOnTaskLaunch="true">
+            <!--  Thanks to James Crisp for the following intent-filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+
+    <uses-feature
+            android:name="android.hardware.camera"
+            android:required="false"></uses-feature>
+    <uses-feature
+            android:name="android.hardware.touchscreen"
+            android:required="false"></uses-feature>
+
+</manifest> 
