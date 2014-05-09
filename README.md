@@ -1,4 +1,4 @@
-WalkBright
+WalkBright [![Build Status](https://travis-ci.org/CUTR-at-USF/walk-bright.svg?branch=master)](https://travis-ci.org/CUTR-at-USF/walk-bright)
 ===========================
 
 A pedestrian lighting app.
