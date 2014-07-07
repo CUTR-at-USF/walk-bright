@@ -1,7 +1,21 @@
 WalkBright [![Build Status](https://travis-ci.org/CUTR-at-USF/walk-bright.svg?branch=master)](https://travis-ci.org/CUTR-at-USF/walk-bright)
 ===========================
 
-A pedestrian lighting app.
+Increase your visibility while walking at night with WalkBrite! Instead of being distracted playing
+with your phone while walking, use your phone to make yourself visible to others!
+
+**FEATURES**:
+
+* Simple, easy to use.
+* Multi-colored flashers draw more attention than standard flashlight apps.
+
+Be seen at night with WalkBrite.
+
+*DISCLAIMER: WalkBright is only a tool and is not a guarantee of safety. Be alert, know your
+surroundings, stay on sidewalks when possible, walk against traffic when sidewalks aren’t available,
+look both ways and use due care before crossing streets.*
+
+For more information about pedestrian safety, visit [www.walkwisetampabay.com](http://www.walkwisetampabay.com)
 
 ## Build Setup
 
