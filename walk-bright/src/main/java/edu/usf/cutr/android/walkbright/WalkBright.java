@@ -207,7 +207,9 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         }
     }
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -272,12 +274,6 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
     }
 
     @Override
-    public void onRestart() {
-        super.onRestart();
-        Log.i(TAG, "onRestart");
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
         Log.i(TAG, "onStart");
@@ -328,7 +324,9 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         super.onDestroy();
     }
 
-    /** {@InheritDoc} * */
+    /**
+     * {@InheritDoc} *
+     */
     @Override
     public void onEulaAgreedTo() {
         Log.d(TAG, "onEulaAgreedTo");
