@@ -4,6 +4,10 @@ WalkBright [![Build Status](https://travis-ci.org/CUTR-at-USF/walk-bright.svg?br
 Increase your visibility while walking at night with WalkBrite! Instead of being distracted playing
 with your phone while walking, use your phone to make yourself visible to others!
 
+Download the app via the [Google Play store](https://play.google.com/store/apps/details?id=edu.usf.cutr.android.walkbright).
+
+[![Google Play logo](http://www.android.com/images/brand/android_app_on_play_logo_large.png)](https://play.google.com/store/apps/details?id=edu.usf.cutr.android.walkbright)
+
 **FEATURES**:
 
 * Simple, easy to use.
