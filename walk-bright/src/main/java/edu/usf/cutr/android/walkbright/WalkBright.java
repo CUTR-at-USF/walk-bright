@@ -308,7 +308,6 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
             mCamera.release();
             mCamera = null;
         }
-        ;
         torch = null;
         Log.i(TAG, "onStop");
     }
