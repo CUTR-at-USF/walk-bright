@@ -41,18 +41,13 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
 
     private static final int COLOR_DARK = 0xCC000000;
 
-    private static final int COLOR_LIGHT = 0xCCBFBFBF;
-    //private static final int COLOR_WHITE = 0xFFFFFFFF;
-
     private Camera mCamera;
 
     private boolean lightOn;
 
-    private boolean previewOn;
-
     private boolean eulaAgreed;
 
-    private View button;
+    private View screen;
 
     private SurfaceView surfaceView;
 
@@ -88,7 +83,7 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
             try {
                 mCamera = Camera.open();
             } catch (RuntimeException e) {
-                Log.i(TAG, "Camera.open() failed: " + e.getMessage());
+                Log.e(TAG, "Camera.open() failed: " + e.getMessage());
             }
         }
     }
@@ -116,7 +111,7 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         lightOn = true;
 
         // Use the screen as a flashlight
-        button.setBackgroundColor(policeColors[counter % 3]);
+        screen.setBackgroundColor(policeColors[counter % 3]);
 
         // Keep screen on
         if (surfaceView != null) {
@@ -137,20 +132,16 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         }
 
         String flashMode = parameters.getFlashMode();
-        Log.i(TAG, "Flash mode: " + flashMode);
-        Log.i(TAG, "Flash modes: " + flashModes);
+        Log.d(TAG, "Flash mode: " + flashMode);
+        Log.d(TAG, "Flash modes: " + flashModes);
         if (!Parameters.FLASH_MODE_TORCH.equals(flashMode)) {
             // Turn on the flash
             if (flashModes.contains(Parameters.FLASH_MODE_TORCH)) {
                 parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
                 mCamera.setParameters(parameters);
-                // button.setBackgroundColor(COLOR_WHITE);
-
             } else {
                 // Toast.makeText(this, "Flash mode (torch) not supported",
                 //    Toast.LENGTH_LONG);
-                // Use the screen as a flashlight (next best thing)
-                // button.setBackgroundColor(COLOR_WHITE);
                 Log.e(TAG, "FLASH_MODE_TORCH not supported");
             }
         }
@@ -158,8 +149,8 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
 
     private void turnLightOff() {
         if (lightOn) {
-            // set the background to dark
-            button.setBackgroundColor(COLOR_DARK);
+            // Set the background to dark
+            screen.setBackgroundColor(COLOR_DARK);
             // Stop wakelock
             if (surfaceView != null) {
                 surfaceView.setKeepScreenOn(false);
@@ -178,8 +169,8 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
             if (flashModes == null) {
                 return;
             }
-            Log.i(TAG, "Flash mode: " + flashMode);
-            Log.i(TAG, "Flash modes: " + flashModes);
+            Log.d(TAG, "Flash mode: " + flashMode);
+            Log.d(TAG, "Flash modes: " + flashModes);
             if (!Parameters.FLASH_MODE_OFF.equals(flashMode)) {
                 // Turn off the flash
                 if (flashModes.contains(Parameters.FLASH_MODE_OFF)) {
@@ -193,20 +184,6 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         }
     }
 
-    private void startPreview() {
-        if (!previewOn && mCamera != null) {
-            mCamera.startPreview();
-            previewOn = true;
-        }
-    }
-
-    private void stopPreview() {
-        if (previewOn && mCamera != null) {
-            mCamera.stopPreview();
-            previewOn = false;
-        }
-    }
-
     /**
      * Called when the activity is first created.
      */
@@ -217,13 +194,13 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
             eulaAgreed = true;
         }
         setContentView(R.layout.main);
-        button = findViewById(R.id.button);
+        screen = findViewById(R.id.screen);
         surfaceView = (SurfaceView) this.findViewById(R.id.surfaceview);
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         disablePhoneSleep();
-        Log.i(TAG, "onCreate");
+        Log.d(TAG, "onCreate");
     }
 
     private void disablePhoneSleep() {
@@ -233,16 +210,15 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
     @Override
     public void onStart() {
         super.onStart();
-        Log.i(TAG, "onStart");
+        Log.d(TAG, "onStart");
         getCamera();
-        startPreview();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         turnLightOn();
-        Log.i(TAG, "onResume");
+        Log.d(TAG, "onResume");
 
         active = true;
 
@@ -300,29 +276,27 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
             surfaceView.setKeepScreenOn(false);
         }
         active = false;
-        Log.i(TAG, "onPause");
+        Log.d(TAG, "onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
         if (mCamera != null) {
-            stopPreview();
             mCamera.release();
             mCamera = null;
         }
         torch = null;
-        Log.i(TAG, "onStop");
+        Log.d(TAG, "onStop");
     }
 
     @Override
     public void onDestroy() {
         if (mCamera != null) {
             turnLightOff();
-            stopPreview();
             mCamera.release();
         }
-        Log.i(TAG, "onDestroy");
+        Log.d(TAG, "onDestroy");
         super.onDestroy();
     }
 
