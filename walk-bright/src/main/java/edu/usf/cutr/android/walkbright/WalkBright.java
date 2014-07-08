@@ -64,7 +64,7 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
 
     boolean active = true;
 
-    // Amount of time between flashes
+    // Amount of time between flashes, in milliseconds
     private int[] waitTime = {100, 100, 400};
 
     // Amount of time light is left on for single flash, in milliseconds
@@ -224,7 +224,29 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         disablePhoneSleep();
         Log.i(TAG, "onCreate");
+    }
 
+    private void disablePhoneSleep() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+        getCamera();
+        startPreview();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        turnLightOn();
+        Log.i(TAG, "onResume");
+
+        active = true;
+
+        // Flash the light via a Thread
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -267,25 +289,6 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
                 }
             }
         }).start();
-    }
-
-    private void disablePhoneSleep() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i(TAG, "onStart");
-        getCamera();
-        startPreview();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        turnLightOn();
-        Log.i(TAG, "onResume");
     }
 
     @Override
