@@ -45,6 +45,8 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
 
     private boolean lightOn;
 
+    private boolean previewOn;
+
     private boolean eulaAgreed;
 
     private View screen;
@@ -184,6 +186,20 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         }
     }
 
+    private void startPreview() {
+        if (!previewOn && mCamera != null) {
+            mCamera.startPreview();
+            previewOn = true;
+        }
+    }
+
+    private void stopPreview() {
+        if (previewOn && mCamera != null) {
+            mCamera.stopPreview();
+            previewOn = false;
+        }
+    }
+
     /**
      * Called when the activity is first created.
      */
@@ -212,6 +228,7 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
         super.onStart();
         Log.d(TAG, "onStart");
         getCamera();
+        startPreview();
     }
 
     @Override
@@ -283,6 +300,7 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
     public void onStop() {
         super.onStop();
         if (mCamera != null) {
+            stopPreview();
             mCamera.release();
             mCamera = null;
         }
@@ -294,6 +312,7 @@ public class WalkBright extends Activity implements Eula.OnEulaAgreedTo, Surface
     public void onDestroy() {
         if (mCamera != null) {
             turnLightOff();
+            stopPreview();
             mCamera.release();
         }
         Log.d(TAG, "onDestroy");
