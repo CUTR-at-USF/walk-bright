@@ -19,6 +19,12 @@ Be seen at night with WalkBrite.
 surroundings, stay on sidewalks when possible, walk against traffic when sidewalks aren’t available,
 look both ways and use due care before crossing streets.*
 
+*WARNING: This app rapidly turns the screen and camera flash on and off. Some individuals may 
+experience epileptic seizures when exposed to flashing lights.  If you, or anyone in your family, 
+have an epileptic condition, consult your physician prior to using.  If you experience dizziness, 
+altered vision, eye or muscle twitches, loss of awareness, disorientation, any involuntary movement,
+or convulsions, IMMEDIATELY discontinue use and consult your physician.*
+
 For more information about pedestrian safety, visit [www.walkwisetampabay.com](http://www.walkwisetampabay.com)
 
 ## Build Setup
