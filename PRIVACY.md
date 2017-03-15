@@ -1,1 +1,1 @@
-WalkBright does not collect any information about you or your device.  No information is ever sent to any WalkBright server (i.e., there is no such server).
+WalkBright does not collect any information about you or your device.  No information is ever sent to any WalkBright server (i.e., there is no such server).  The camera permission is requested in order to control the LED light on the back of your phone to make it flash along with the screen.
