@@ -4,8 +4,6 @@ jdk: oraclejdk8
 android:
   components:
     - build-tools-25.0.2
-  licenses:
-    - android-sdk-license-5be876d5
-    - '.*intel.+'
+
 script:
   - ./gradlew assembleDebug -PdisablePreDex
